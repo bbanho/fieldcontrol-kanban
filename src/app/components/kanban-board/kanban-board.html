@@ -1,0 +1,28 @@
+<div class="kanban-board">
+  <div class="kanban-header">
+    <h1>Kanban Board</h1>
+    <button class="add-column-btn" (click)="toggleColumnForm()">
+      + Adicionar Coluna
+    </button>
+  </div>
+
+  <div class="column-form-container" *ngIf="showColumnForm">
+    <app-column-form 
+      (columnCreated)="createColumn($event)"
+      (canceled)="toggleColumnForm()">
+    </app-column-form>
+  </div>
+
+  <div class="columns-container">
+    <app-kanban-column
+      *ngFor="let column of columns; trackBy: trackByColumnId"
+      [column]="column"
+      (columnDeleted)="deleteColumn($event)">
+    </app-kanban-column>
+  </div>
+
+  <div class="empty-state" *ngIf="columns.length === 0">
+    <p>Nenhuma coluna criada ainda.</p>
+    <p>Clique em "Adicionar Coluna" para começar!</p>
+  </div>
+</div> 
