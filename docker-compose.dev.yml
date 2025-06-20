@@ -25,7 +25,7 @@ services:
   # Backend NestJS (desenvolvimento)
   backend:
     build:
-      context: ./backend
+      context: ./backend/kanban-backend
       dockerfile: Dockerfile.dev
     container_name: kanban-backend-dev
     environment:
@@ -40,7 +40,7 @@ services:
     networks:
       - kanban-network-dev
     volumes:
-      - ./backend:/app
+      - ./backend/kanban-backend:/app
       - /app/node_modules
     command: npm run start:dev
     restart: unless-stopped
@@ -48,7 +48,7 @@ services:
   # Frontend Angular (desenvolvimento)
   frontend:
     build:
-      context: ./frontend
+      context: ./frontend/kanban-frontend
       dockerfile: Dockerfile.dev
     container_name: kanban-frontend-dev
     environment:
@@ -60,7 +60,7 @@ services:
     networks:
       - kanban-network-dev
     volumes:
-      - ./frontend:/app
+      - ./frontend/kanban-frontend:/app
       - /app/node_modules
     command: npm start
     restart: unless-stopped
