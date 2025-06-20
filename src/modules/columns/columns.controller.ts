@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { ColumnsService } from './columns.service';
-import { CreateColumnDto } from '../../dto/create-column.dto';
-import { UpdateColumnDto } from '../../dto/update-column.dto';
+import { CreateColumnDto } from '../../common/dto/create-column.dto';
+import { UpdateColumnDto } from '../../common/dto/update-column.dto';
 
 @Controller('columns')
 export class ColumnsController {

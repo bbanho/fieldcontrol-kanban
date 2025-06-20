@@ -75,6 +75,20 @@ services:
       - kanban-network-dev
     restart: unless-stopped
 
+  postgres_test:
+    image: postgres:15-alpine
+    container_name: kanban-postgres-test
+    environment:
+      POSTGRES_DB: kanban_db_test
+      POSTGRES_USER: kanban_user
+      POSTGRES_PASSWORD: kanban_password
+    volumes:
+      - ./docker/init-test-db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5433:5432"
+    networks:
+      - kanban-network-dev
+
 volumes:
   postgres_data_dev:
 

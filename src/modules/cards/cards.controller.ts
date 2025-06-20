@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { CardsService } from './cards.service';
-import { CreateCardDto } from '../../dto/create-card.dto';
-import { UpdateCardDto } from '../../dto/update-card.dto';
+import { CreateCardDto } from '../../common/dto/create-card.dto';
+import { UpdateCardDto } from '../../common/dto/update-card.dto';
 
 @Controller('cards')
 export class CardsController {
@@ -30,13 +30,5 @@ export class CardsController {
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.cardsService.remove(id);
-  }
-
-  @Patch(':id/move')
-  moveCard(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() moveData: { columnId: number; position: number }
-  ) {
-    return this.cardsService.moveCard(id, moveData.columnId, moveData.position);
   }
 } 

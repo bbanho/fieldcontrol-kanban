@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ColumnsService } from './columns.service';
 import { ColumnsController } from './columns.controller';
-import { Column } from '../../entities/column.entity';
+import { ColumnsService } from './columns.service';
+import { Column } from '../../common/entities/column.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Column])],
