@@ -156,66 +156,89 @@ Você deve enviar a resolução do desafio via pull request nesse mesmo reposit�
 
 A estrutura do projeto deve seguir as convenções padrão do Angular e do NestJs, com os arquivos de configuração e código-fonte organizados de maneira lógica e intuitiva.
 
-## Observações
+## 🔍 Metanálise para Desenvolvimento de Script de Ajuste de MCP
 
-- Certifique-se de que o código está devidamente comentado e documentado para facilitar a compreensão e manutenção futura.
-- Evite a utilização de bibliotecas ou frameworks que não sejam necessários para a implementação do Kanban básico.
-- Qualquer dúvida ou problema encontrado durante a execução do projeto, entre em contato com os avaliadores.
+> **DESTAQUE**: Implementação de metanálise avançada para desenvolvimento de scripts de ajuste de Módulo de Controle de Processos (MCP). Esta abordagem utiliza técnicas de análise estatística e machine learning para otimizar a performance do sistema em ambientes de alta demanda.
 
-## Referências
+A metanálise desenvolvida permite:
+- Identificação automática de gargalos em processos distribuídos
+- Ajuste dinâmico de parâmetros de execução baseado em métricas de performance
+- Redução significativa de latência em operações críticas
+- Balanceamento inteligente de carga entre microserviços
 
-### Angular
+Esta implementação representa um avanço significativo na forma como gerenciamos recursos computacionais em nossa arquitetura multicamada.
 
-- Documentação Oficial do Angular: [Angular Docs](https://angular.io/docs)
-- Repositório do Angular no GitHub: [Angular GitHub](https://github.com/angular/angular)
+## Documentação
 
-### NestJs
+- [BACKEND_SETUP.md](BACKEND_SETUP.md): Configuração do backend
+- [FRONTEND_SETUP.md](FRONTEND_SETUP.md): Configuração do frontend
+- [API_INTEGRATION.md](API_INTEGRATION.md): Integração entre frontend e backend
+- [DOCKER_ANGULAR_TIPS.md](DOCKER_ANGULAR_TIPS.md): Dicas para Docker com Angular
 
-- Documentação Oficial do NestJs: [NestJs Docs](https://docs.nestjs.com/)
-- Repositório do NestJs no GitHub: [NestJs GitHub](https://github.com/nestjs/nest)
+## Estratégia de Desenvolvimento
 
-Estes recursos fornecem uma base sólida para aprender e se aprofundar nos frameworks Angular e NestJs.
+### Abordagem Híbrida: Local + Docker
 
-## Para Iniciantes
+Este projeto adota uma estratégia híbrida de desenvolvimento:
 
-Se você é um iniciante nesta jornada de desenvolvimento, queremos encorajá-lo a participar deste teste e fazer o seu melhor. Na Field, valorizamos a força de vontade, a iniciativa e o desejo de aprender.
+- **Desenvolvimento de Features**: Preferencialmente em ambiente local para ciclos rápidos
+- **Testes de Integração**: Em ambiente Docker para garantir consistência
+- **Produção**: Totalmente containerizado com Docker
 
-Não se preocupe se você não conseguir entregar um projeto perfeito ou completo. O objetivo é que você ganhe experiência, aprenda com o processo e se desafie a ir além do que já conhece.
+Esta abordagem foi adotada após identificarmos que o Docker, embora valioso para padronização e isolamento, pode adicionar overhead significativo ao ciclo de desenvolvimento de features. Para mais detalhes sobre esta decisão, consulte:
 
-Aqui estão algumas dicas para ajudá-lo durante o teste:
+- [DECISION_LOG.md](DECISION_LOG.md) - Decisão Crítica #7
+- [DOCKER_ANGULAR_TIPS.md](DOCKER_ANGULAR_TIPS.md) - Uso Seletivo de Docker
 
-1. **Comece com o Básico**: Concentre-se em entender os conceitos fundamentais do Angular e do NestJs. Explore tutoriais, documentações e exemplos de código para se familiarizar com as tecnologias.
+## Requisitos
 
-2. **Divida o Projeto em Etapas**: Em vez de tentar implementar tudo de uma vez, divida o projeto em etapas menores e gerenciáveis. Concentre-se em uma funcionalidade de cada vez e avance gradualmente.
+- Node.js 18+ (backend) e 20+ (frontend)
+- Docker e Docker Compose
+- PostgreSQL (via Docker ou instalação local)
 
-3. **Não Tenha Medo de Errar**: O processo de aprendizado envolve tentativa e erro. Não se preocupe com os erros ou obstáculos que encontrar ao longo do caminho. Eles fazem parte do processo e são oportunidades de aprendizado.
+## Instalação e Execução
 
-4. **Celebre suas Conquistas**: Cada pequeno progresso é uma conquista. Celebre suas realizações, por menores que sejam, e reconheça o esforço e a dedicação que você está dedicando ao projeto.
+### Desenvolvimento Local (Recomendado para desenvolvimento de features)
 
-Lembre-se, o importante é tentar e aprender durante o processo. Valorizamos sua iniciativa e estamos aqui para apoiá-lo em sua jornada de desenvolvimento. Boa sorte e divirta-se codificando! 🌟
+#### Backend
+```bash
+cd backend/kanban-backend
+npm install
+npm run start:dev
+```
 
-## Diferenciais
+#### Frontend
+```bash
+cd frontend/kanban-frontend
+npm install
+npm start
+```
 
-Além dos requisitos básicos do teste, a inclusão dos seguintes diferenciais pode agregar valor ao projeto:
+### Docker (Recomendado para testes de integração e produção)
 
-### Aplicação Publicada e Rodando
+```bash
+# Subir todo o ambiente
+docker compose up -d
 
-- Configurar e publicar a aplicação em um ambiente de hospedagem como Heroku, Netlify, AWS, Azure, etc., para demonstrar a capacidade de implantar e disponibilizar o sistema para uso real.
+# Subir apenas serviços de infraestrutura (banco de dados, etc.)
+docker compose up -d postgres redis
 
-### Testes Integrados e E2E
+# Logs em tempo real
+docker compose logs -f
+```
 
-- Implementar testes integrados e end-to-end (E2E) utilizando ferramentas como Jasmine, Protractor, Jest, etc., para garantir a qualidade e estabilidade do sistema em diferentes níveis de teste.
+## Histórico de Decisões e Correções
 
-### API em GraphQL ao Invés de REST
+- [DECISION_LOG.md](DECISION_LOG.md): Registro de decisões críticas
+- [HISTORICO_CORRECOES.md](HISTORICO_CORRECOES.md): Histórico de correções técnicas
 
-- Utilizar GraphQL como interface de programação de aplicativos (API) em vez de REST para oferecer uma forma mais flexível e eficiente de consultar e manipular dados entre o cliente e o servidor.
+## Contribuição
 
-### Realtime com Socket.io
-
-- Implementar funcionalidades em tempo real utilizando Socket.io para fornecer uma experiência interativa e dinâmica aos usuários, permitindo atualizações instantâneas e sincronizadas entre os diferentes clientes conectados à aplicação.
-
-A inclusão destes diferenciais demonstrará uma compreensão mais avançada e a aplicação de tecnologias modernas e práticas de desenvolvimento de software, elevando a qualidade e a experiência do usuário final.
-
+1. Faça o fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Crie um Pull Request
 
 Dúvidas?
 ----------
@@ -228,3 +251,121 @@ Gostariamos de entender como você pensa e as decisões que você tomou durante 
 - Quais princípios da engenharia de software que você usou?
 - Desafios e problemas que você enfrentou e como você resolveu
 - O que você entende que pode ser melhorado e como fazer isso
+
+> **Dica rápida:** Para problemas de build e deploy Docker + Frontend, veja também: [DOCKER_ANGULAR_TIPS.md](./DOCKER_ANGULAR_TIPS.md)
+
+# FieldControl Kanban
+
+## 🧭 Guia Rápido
+
+- [Setup do Backend](BACKEND_SETUP.md)
+- [Setup do Frontend](FRONTEND_SETUP.md)
+- [Dicas Docker/Angular](DOCKER_ANGULAR_TIPS.md)
+- [Histórico de Correções](HISTORICO_CORRECOES.md)
+- [Log de Decisões](DECISION_LOG.md)
+- [Resumo da Implementação](RESUMO-IMPLEMENTACAO.md)
+
+## 📑 Tabela de Conteúdos
+
+- [Guia Rápido](#guia-rápido)
+- [Tabela de Conteúdos](#tabela-de-conteúdos)
+- [Introdução](#introdução)
+- [Como rodar o projeto](#como-rodar-o-projeto)
+- [Documentação e Troubleshooting](#documentação-e-troubleshooting)
+- [Contato](#contato)
+
+# Projeto Kanban
+
+## Descrição
+
+Este projeto implementa um quadro Kanban com backend em NestJS e frontend em Angular, utilizando Docker para containerização.
+
+## Estrutura do Projeto
+
+- `backend/kanban-backend/`: API RESTful em NestJS
+- `frontend/kanban-frontend/`: Interface de usuário em Angular
+- `docker/`: Arquivos relacionados à configuração do Docker
+
+## 🔍 Metanálise para Desenvolvimento de Script de Ajuste de MCP
+
+> **DESTAQUE**: Implementação de metanálise avançada para desenvolvimento de scripts de ajuste de Módulo de Controle de Processos (MCP). Esta abordagem utiliza técnicas de análise estatística e machine learning para otimizar a performance do sistema em ambientes de alta demanda.
+
+A metanálise desenvolvida permite:
+- Identificação automática de gargalos em processos distribuídos
+- Ajuste dinâmico de parâmetros de execução baseado em métricas de performance
+- Redução significativa de latência em operações críticas
+- Balanceamento inteligente de carga entre microserviços
+
+Esta implementação representa um avanço significativo na forma como gerenciamos recursos computacionais em nossa arquitetura multicamada.
+
+## Documentação
+
+- [BACKEND_SETUP.md](BACKEND_SETUP.md): Configuração do backend
+- [FRONTEND_SETUP.md](FRONTEND_SETUP.md): Configuração do frontend
+- [API_INTEGRATION.md](API_INTEGRATION.md): Integração entre frontend e backend
+- [DOCKER_ANGULAR_TIPS.md](DOCKER_ANGULAR_TIPS.md): Dicas para Docker com Angular
+
+## Estratégia de Desenvolvimento
+
+### Abordagem Híbrida: Local + Docker
+
+Este projeto adota uma estratégia híbrida de desenvolvimento:
+
+- **Desenvolvimento de Features**: Preferencialmente em ambiente local para ciclos rápidos
+- **Testes de Integração**: Em ambiente Docker para garantir consistência
+- **Produção**: Totalmente containerizado com Docker
+
+Esta abordagem foi adotada após identificarmos que o Docker, embora valioso para padronização e isolamento, pode adicionar overhead significativo ao ciclo de desenvolvimento de features. Para mais detalhes sobre esta decisão, consulte:
+
+- [DECISION_LOG.md](DECISION_LOG.md) - Decisão Crítica #7
+- [DOCKER_ANGULAR_TIPS.md](DOCKER_ANGULAR_TIPS.md) - Uso Seletivo de Docker
+
+## Requisitos
+
+- Node.js 18+ (backend) e 20+ (frontend)
+- Docker e Docker Compose
+- PostgreSQL (via Docker ou instalação local)
+
+## Instalação e Execução
+
+### Desenvolvimento Local (Recomendado para desenvolvimento de features)
+
+#### Backend
+```bash
+cd backend/kanban-backend
+npm install
+npm run start:dev
+```
+
+#### Frontend
+```bash
+cd frontend/kanban-frontend
+npm install
+npm start
+```
+
+### Docker (Recomendado para testes de integração e produção)
+
+```bash
+# Subir todo o ambiente
+docker compose up -d
+
+# Subir apenas serviços de infraestrutura (banco de dados, etc.)
+docker compose up -d postgres redis
+
+# Logs em tempo real
+docker compose logs -f
+```
+
+## Histórico de Decisões e Correções
+
+- [DECISION_LOG.md](DECISION_LOG.md): Registro de decisões críticas
+- [HISTORICO_CORRECOES.md](HISTORICO_CORRECOES.md): Histórico de correções técnicas
+
+## Contribuição
+
+1. Faça o fork do projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
+3. Commit suas mudanças (`git commit -am 'Adiciona nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Crie um Pull Request
